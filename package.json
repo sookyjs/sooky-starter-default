@@ -1,15 +1,33 @@
 {
   "name": "sooky-starter-default",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Sooky Starter",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Nazim Boudeffa <https://github.com/nazimboudeffa>",
+  "contributors": [
+    {
+      "name": "Nazim Boudeffa",
+      "url": "https://github.com/nazimboudeffa"
+    },
+    {
+      "name": "Salim Benfarhat",
+      "url": "https://github.com/salimbenfarhat"
+    }
+  ],
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "helmet": "^5.1.1",
     "sooky": "github:sookyjs/sooky"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }

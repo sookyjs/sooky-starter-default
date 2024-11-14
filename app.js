@@ -1,24 +1,47 @@
-import express from "express"
-import loaders from "sooky/loaders/index.js"
-import Logger from "sooky/loaders/logger.js"
+import express from "express";
+import dotenv from "dotenv";
+import helmet from "helmet";
+import cors from "cors";
+import loaders from "sooky/loaders/index.js";
+import Logger from "sooky/loaders/logger.js";
 
-const PORT = process.env.PORT || 9000
+// Charger les variables d'environnement depuis le fichier .env
+dotenv.config();
+
+const PORT = process.env.PORT || 9000;
+const DATABASE_URL = process.env.DATABASE_URL;
+
+if (!DATABASE_URL) {
+  throw new Error("MongoDB URI is not defined in sooky-starter-default .env");
+}
 
 const startServer = async () => {
-  const app = express()
+  const app = express();
+
+  // Middlewares de sécurité
+  app.use(helmet());  // Protection des en-têtes HTTP
+  app.use(cors());    // Activer CORS pour les appels API
 
   // Middleware pour parser le JSON
   app.use(express.json());
 
-  await loaders({ expressApp: app })
+  // Charger les autres modules via loaders et passer l'URI MongoDB
+  await loaders({ expressApp: app, databaseUri: DATABASE_URL });
 
-  app.listen(PORT, err => {
+  // Middleware global pour gérer les erreurs
+  app.use((err, req, res, next) => {
+    Logger.error(err.stack);  // Log de l'erreur avec stack
+    res.status(500).json({ message: "Erreur interne du serveur" });
+  });
+
+  // Démarrage du serveur
+  app.listen(PORT, (err) => {
     if (err) {
-      console.log(err)
-      return
+      Logger.error("Erreur lors du démarrage du serveur:", err);
+      return;
     }
-    Logger.info(`Server is ready on port: ${PORT}!`)
-  })
-}
+    Logger.info(`Le serveur est prêt sur le port : ${PORT}!`);
+  });
+};
 
-startServer()
+startServer();
