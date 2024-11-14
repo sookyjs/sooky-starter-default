@@ -1,2 +1,8 @@
-node_modules
+# Ignore le dossier node_modules, qui contient les dépendances installées via npm.
+node_modules/
+
+# Ignore les fichiers .env qui contiennent des informations sensibles et spécifiques à l'environnement.
 .env
+
+# Ignore le fichier .package-lock.json
+package-lock.json
