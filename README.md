@@ -48,4 +48,4 @@ Nous encourageons activement les contributions à ce projet open-source. Pour so
 
 [![](https://img.shields.io/badge/Salim%20%20Benfarhat's%20%20-PAYPAL-blue)](https://salim.link/paypal)  
 
-[![](https://img.shields.io/badge/Nazim%20%20Boudeffa's%20%20-TIPEEE-pink)](https://salim.link/paypal)  
+[![](https://img.shields.io/badge/Nazim%20%20Boudeffa's%20%20-TIPEEE-pink)](https://fr.tipeee.com/nazimboudeffa)  
